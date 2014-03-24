@@ -4,4 +4,11 @@
 <div><%= link_to "Sign In!", new_user_session_path unless user_signed_in? %></div>
 <div><%= link_to "Sign Up!", new_user_registration_path unless user_signed_in? %></div>
 <div><%= link_to "Sign Out!", destroy_user_session_path, method: :delete if user_signed_in? %></div>
-
+<div>
+  <% if user_signed_in? %>
+    <%= form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" } do |f| %>
+      <%= f.text_area :visitor_phone_number %>
+      <%= f.submit "Send Visitor Pass!" %>
+    <% end %>
+  <% end %>
+</div>
