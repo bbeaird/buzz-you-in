@@ -6,8 +6,8 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  private
-    def visitor_pass_params
-      params.require(:visitor_pass).permit(:visitor_phone_number, :user_id)
-    end
+  # private
+  #   def visitor_pass_params
+  #     params.require(:visitor_pass).permit(:visitor_phone_number, :user_id)
+  #   end
 end
