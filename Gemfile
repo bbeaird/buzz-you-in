@@ -8,7 +8,7 @@ gem 'twilio-ruby'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,6 +34,19 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem 'pg', '0.12.2'
+end
+
+group :development, :test do
+  gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails', '2.11.0'
+  # gem 'guard-rspec', '1.2.1'
+  # gem 'guard-spork', '1.2.0'
+  # gem 'childprocess', '0.3.6'
+  # gem 'spork', '0.9.2'
 end
 
 # Use ActiveModel has_secure_password

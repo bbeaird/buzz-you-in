@@ -3,7 +3,6 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       # @visitor_pass = current_user.visitor_passes.build
       @visitor_pass = VisitorPass.new
-      # @active_visitor_passes = current_user.visitor_passes
       @active_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 4.hours))
     end
 

@@ -10,10 +10,10 @@
       <%= f.text_area :visitor_phone_number %>
       <%= f.submit "Send Visitor Pass!" %>
     <% end %>
-  <% end %>
 
-  <h2>Active visitor passes for user with id of <%= current_user.id %></h2>
-  <ol id="active-visitor-passes">
-    <%= render @active_visitor_passes %>
-  </ol>
+    <h2>Active visitor passes for user with id of <%= current_user.id %></h2>
+    <ol id="active-visitor-passes">
+      <%= render @active_visitor_passes %>
+    </ol>
+  <% end %>
 </div>
