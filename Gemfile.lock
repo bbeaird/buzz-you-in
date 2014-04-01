@@ -155,7 +155,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 1.2)
   jquery-rails
-  pg (= 0.15.1)
+  pg
   rails (= 4.0.2)
   rails_12factor (= 0.0.2)
   rspec-rails (= 2.11.0)
