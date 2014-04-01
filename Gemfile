@@ -5,6 +5,7 @@ ruby '2.0.0'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'devise'
 gem 'twilio-ruby'
+gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -39,12 +40,12 @@ group :doc do
 end
 
 group :production do
-  gem 'pg'# , '0.15.1'
+  # gem 'pg'# , '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
+  # gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
   # gem 'guard-rspec', '1.2.1'
   # gem 'guard-spork', '1.2.0'
