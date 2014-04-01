@@ -37,7 +37,7 @@ group :doc do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'pg', '0.15.1'
 end
 
 group :development, :test do
