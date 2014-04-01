@@ -8,6 +8,7 @@ development:
   encoding: unicode
   database: buzz_you_in_development
   pool: 5
+  host: localhost
 
 # development:
 #   adapter: sqlite3
