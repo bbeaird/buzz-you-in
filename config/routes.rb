@@ -9,6 +9,8 @@ BuzzYouIn::Application.routes.draw do
 
   root 'static_pages#home'
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
+  post '/twilio/voice' => 'twilio#voice'
+  get '/twilio/voice' => 'twilio#voice'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,4 +1,8 @@
 class VisitorPassesController < ApplicationController
+  include Webhookable
+
+  after_filter :set_header
+
   def create
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
     @visitor_pass.save
@@ -14,7 +18,12 @@ class VisitorPassesController < ApplicationController
   end
 
   def call_from_callbox
+    name = 'Brantley'
+    response = Twilio::TwiML::Response.new do |r|
+      r.Say "Hello #{name}"
+    end
 
+    render_twiml response
   end
 
   private
