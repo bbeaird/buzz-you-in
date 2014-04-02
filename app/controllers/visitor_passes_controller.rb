@@ -2,7 +2,7 @@ class VisitorPassesController < ApplicationController
   def create
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
     @visitor_pass.save
-    p :visitor_phone_number
+
     client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     client.account.messages.create(
       from: ENV['MY_TWILIO_NUMBER'],
@@ -11,6 +11,10 @@ class VisitorPassesController < ApplicationController
       )
     puts "Sent message to #{ENV['MY_TWILIO_NUMBER']}!!!"
     redirect_to root_url
+  end
+
+  def call_from_callbox
+
   end
 
   private
