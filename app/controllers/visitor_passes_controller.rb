@@ -21,13 +21,14 @@ class VisitorPassesController < ApplicationController
     name = 'Brantley'
     response = Twilio::TwiML::Response.new do |r|
       r.Say "Hello #{name}"
+      # r.Dial.Number
     end
-
-    render_twiml response
+    render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
+    # render_twiml response
   end
 
   private
-    def visitor_pass_params
-      params.require(:visitor_pass).permit(:visitor_phone_number, :user_id)
-    end
+  def visitor_pass_params
+    params.require(:visitor_pass).permit(:visitor_phone_number, :user_id)
+  end
 end
