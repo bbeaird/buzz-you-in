@@ -5,15 +5,23 @@
 <div><%= link_to "Sign Up!", new_user_registration_path unless user_signed_in? %></div>
 <div><%= link_to "Sign Out!", destroy_user_session_path, method: :delete if user_signed_in? %></div>
 <div>
-  <% if user_signed_in? %>
-    <%= form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" } do |f| %>
-      <%= f.text_area :visitor_phone_number %>
-      <%= f.submit "Send Visitor Pass!" %>
+  <% if current_user.phone_number.nil? %>
+    <div>We need your phone number in order for you to send visitor passes!</div>
+    <%= form_for @user, url: { controller: "users", action: "add_phone_number", method: "patch" } do |f| %>
+      <%= f.text_area :phone_number %>
+      <%= f.submit "Submit!" %>
     <% end %>
+  <% else %>
+    <% if user_signed_in? %>
+      <%= form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" } do |f| %>
+        <%= f.text_area :visitor_phone_number %>
+        <%= f.submit "Send Visitor Pass!" %>
+      <% end %>
 
-    <h2>Active visitor passes for user with id of <%= current_user.id %></h2>
-    <ol id="active-visitor-passes">
-      <%= render @active_visitor_passes %>
-    </ol>
+      <h2>Active visitor passes for user with id of <%= current_user.id %></h2>
+      <ol id="active-visitor-passes">
+        <%= render @active_visitor_passes %>
+      </ol>
+    <% end %>
   <% end %>
 </div>
