@@ -18,6 +18,7 @@ class VisitorPassesController < ApplicationController
   end
 
   def call_from_callbox
+
     name = 'Brantley'
     response = Twilio::TwiML::Response.new do |r|
       r.Say "Hello #{name}"
