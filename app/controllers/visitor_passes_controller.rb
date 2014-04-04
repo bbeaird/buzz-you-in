@@ -18,7 +18,7 @@ class VisitorPassesController < ApplicationController
   end
 
   def call_from_callbox
-    p "active_visitor_passes: XXXXXXXXXXXX #{active_visitor_passes}"
+    p "active_visitor_passes: #{active_visitor_passes}"
     if active_visitor_passes
       name = 'Brantley'
       response = Twilio::TwiML::Response.new do |r|
@@ -32,12 +32,12 @@ class VisitorPassesController < ApplicationController
   end
 
   def active_visitor_passes
-    VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 4.hours)) if current_user
+    VisitorPass.where("user_id = ? AND created_at >= ? AND callbox_phone_number = ?", current_user.id, (Time.now - 4.hours), "+1#{params[:user][:callbox_phone_number]}") if current_user
     # VisitorPass.where
   end
 
   private
   def visitor_pass_params
-    params.require(:visitor_pass).permit(:visitor_phone_number, :user_id)
+    params.require(:visitor_pass).permit(:visitor_phone_number, :user_id, :resident_phone_number)
   end
 end

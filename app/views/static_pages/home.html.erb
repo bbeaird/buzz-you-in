@@ -10,7 +10,7 @@
 <div>
   <% if user_signed_in? && (current_user.phone_number.blank? || current_user.callbox_phone_number.blank?) %>
     <div>We need your phone number in order for you to send visitor passes!</div>
-    <%= form_for @user, url: { controller: "users", action: "add_phone_number", method: "patch" } do |f| %>
+    <%= form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" } do |f| %>
       <%= f.label :phone_number %>
       <%= f.text_area :phone_number, placeholder: "Your cellphone number" %>
       <%= f.label :callbox_phone_number %>
@@ -20,7 +20,9 @@
   <% else %>
     <% if user_signed_in? %>
       <%= form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" } do |f| %>
-        <%= f.text_area :visitor_phone_number %>
+        <%= f.label :visitor_phone_number %>
+        <%= f.text_area :visitor_phone_number, placeholder: "Visitor's cellphone number" %>
+        <%= f.hidden_field :resident_phone_number, value: current_user.phone_number %>
         <%= f.submit "Send Visitor Pass!" %>
       <% end %>
 
