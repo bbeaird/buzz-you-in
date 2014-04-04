@@ -8,7 +8,7 @@
 </ol>
 
 <div>
-  <% if user_signed_in? && (current_user.phone_number.nil? || current_user.callbox_phone_number.nil?) %>
+  <% if user_signed_in? && (current_user.phone_number.blank? || current_user.callbox_phone_number.blank?) %>
     <div>We need your phone number in order for you to send visitor passes!</div>
     <%= form_for @user, url: { controller: "users", action: "add_phone_number", method: "patch" } do |f| %>
       <%= f.label :phone_number %>
