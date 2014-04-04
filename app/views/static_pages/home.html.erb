@@ -11,7 +11,8 @@
   <% if user_signed_in? && current_user.phone_number.nil? %>
     <div>We need your phone number in order for you to send visitor passes!</div>
     <%= form_for @user, url: { controller: "users", action: "add_phone_number", method: "patch" } do |f| %>
-      <%= f.text_area :phone_number %>
+      <%= f.label :phone_number %>
+      <%= f.text_area :phone_number, placeholder: "Your cellphone number" %>
       <%= f.submit "Submit!" %>
     <% end %>
   <% else %>

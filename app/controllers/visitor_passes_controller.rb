@@ -18,14 +18,22 @@ class VisitorPassesController < ApplicationController
   end
 
   def call_from_callbox
-
-    name = 'Brantley'
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say "Hello #{name}"
-      # r.Dial.Number
-    end
-    render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
+    p "active_visitor_passes: XXXXXXXXXXXX #{active_visitor_passes}"
+    if active_visitor_passes
+      name = 'Brantley'
+      response = Twilio::TwiML::Response.new do |r|
+        r.Say "Hello #{name}"
+      end
+      render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
     # render_twiml response
+    else
+      render '/app/views/visitor_passes/do_not_buzz_in.html.erb', layout: false
+    end
+  end
+
+  def active_visitor_passes
+    VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 4.hours)) if current_user
+    # VisitorPass.where
   end
 
   private
