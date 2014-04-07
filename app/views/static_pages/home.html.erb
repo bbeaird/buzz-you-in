@@ -1,23 +1,20 @@
 <div>
   <% if user_signed_in? && (current_user.phone_number.blank? || current_user.callbox_phone_number.blank?) %>
     <div>We need your phone number in order for you to send visitor passes!</div>
-    <%= form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" } do |f| %>
-      <%= f.label :phone_number %>
-      <%= f.text_area :phone_number, placeholder: "Your cellphone number" %>
-      <%= f.label :callbox_phone_number %>
-      <%= f.text_area :callbox_phone_number, placeholder: "Your callbox phone number" %>
-      <%= f.submit "Submit!" %>
+        <%= simple_form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" }, html: { class: "form-vertical" } do |f| %>
+          <%= f.input :phone_number, placeholder: "Your cellphone number" %>
+          <%= f.input :callbox_phone_number, placeholder: "Your callbox phone number" %>
+          <%= f.button :submit %>
     <% end %>
   <% else %>
     <% if user_signed_in? %>
-      <%= form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" } do |f| %>
-        <%= f.label :visitor_phone_number %>
-        <%= f.text_area :visitor_phone_number, placeholder: "Visitor's cellphone number" %>
+      <%= simple_form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" }, html: { class: "form-vertical" } do |f| %>
+        <%= f.input :visitor_phone_number, placeholder: "Visitor's cellphone number" %>
         <%= f.hidden_field :resident_phone_number, value: current_user.phone_number %>
         <%= f.submit "Send Visitor Pass!" %>
       <% end %>
 
-      <h2>Active visitor passes for user with id of <%= current_user.id %></h2>
+      <h3>Active visitor passes for user with id of <%= current_user.id %></h3>
       <ol id="active-visitor-passes">
         <%= render @active_visitor_passes %>
       </ol>
