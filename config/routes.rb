@@ -12,7 +12,7 @@ BuzzYouIn::Application.routes.draw do
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
   post '/twilio/voice' => 'twilio#voice'
   get '/twilio/voice' => 'twilio#voice'
-  patch '/users/add_phone_number', to: 'users#add_phone_number'
+  patch '/users/add_phone_number', to: 'users#add_phone_numbers'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
