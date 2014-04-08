@@ -18,6 +18,7 @@ class VisitorPassesController < ApplicationController
   end
 
   def call_from_callbox
+    p "params: #{params}"
     p "active_visitor_passes: #{active_visitor_passes}"
     if active_visitor_passes
       name = 'Brantley'
@@ -32,7 +33,7 @@ class VisitorPassesController < ApplicationController
   end
 
   def active_visitor_passes
-    VisitorPass.where("user_id = ? AND created_at >= ? AND callbox_phone_number = ?", current_user.id, (Time.now - 4.hours), "+1#{params[:user][:callbox_phone_number]}") if current_user
+    VisitorPass.where("user_id = ? AND created_at >= ? AND resident_phone_number = ?", current_user.id, (Time.now - 4.hours), "{params[:user][:resident_phone_number]}") if current_user
     # VisitorPass.where
   end
 
