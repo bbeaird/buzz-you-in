@@ -32,8 +32,9 @@ class VisitorPassesController < ApplicationController
   end
 
   def active_visitor_passes
-    p formatted_phone_number = params[:From][2..-1]
-    active_passes = VisitorPass.where("created_at >= ?", (Time.now - 4.hours))
+    formatted_phone_number = params[:From][2..-1]
+    # active_passes = VisitorPass.where("created_at >= ?", (Time.now - 4.hours))
+    active_passes = User.where("callbox_phone_number = ?", formatted_phone_number).last.visitor_passes.last # VisitorPass.where("created_at >= ?", (Time.now - 4.hours))
     if active_passes.size >= 1
       return true
     else

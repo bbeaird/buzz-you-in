@@ -4,7 +4,6 @@ class CreateVisitorPasses < ActiveRecord::Migration
       t.belongs_to :user
       t.string :visitor_phone_number
 
-
       t.timestamps
     end
   end
