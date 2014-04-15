@@ -43,6 +43,12 @@ class VisitorPassesController < ApplicationController
     # VisitorPass.where("created_at >= ? AND resident_phone_number = ?", (Time.now - 4.hours), "{formatted_phone_number}")
   end
 
+  def sms_from_visitor
+    p formatted_phone_number = params[:From][2..-1]
+    visitor_pass = VisitorPass.where("visitor_phone_number = ?", formatted_phone_number).last
+    visitor_pass.update_attribute(:active?, true)
+  end
+
   private
   def visitor_pass_params
     params.require(:visitor_pass).permit(:visitor_phone_number, :user_id, :resident_phone_number)
