@@ -10,7 +10,6 @@
     <% if user_signed_in? %>
       <%= simple_form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" }, html: { class: "form-vertical" } do |f| %>
         <%= f.input :visitor_phone_number, placeholder: "555-555-5555" %>
-        <%= f.hidden_field :resident_phone_number, value: current_user.resident_phone_number %>
         <%= f.submit "Send Visitor Pass!" %>
       <% end %>
 
