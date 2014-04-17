@@ -18,15 +18,16 @@ class VisitorPassesController < ApplicationController
 
   def call_from_callbox
     formatted_resident_byi_number = params[:To][2..-1]
+    user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
+    visitor_pass = user.visitor_passes.first.where("active? = ?", true)
+
     p "active_visitor_passes: #{active_visitor_passes}"
     if active_visitor_passes
       name = 'Brantley'
       response = Twilio::TwiML::Response.new do |r|
         r.Say "Hello #{name}"
       end
-
       render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
-    # render_twiml response
     else
       render '/app/views/visitor_passes/do_not_buzz_in.html.erb', layout: false
     end
