@@ -19,7 +19,9 @@ class VisitorPassesController < ApplicationController
   def call_from_callbox
     formatted_resident_byi_number = params[:To][2..-1]
     user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
+    # user = User.where("resident_byi_phone_number = '6505675874'").first
     visitor_pass = user.visitor_passes.first.where("active = ?", true)
+    # visitor_pass = user.visitor_passes.first.where("active = ?", false)
 
     p "active_visitor_passes: #{active_visitor_passes}"
     if active_visitor_passes
@@ -52,6 +54,6 @@ class VisitorPassesController < ApplicationController
 
   private
   def visitor_pass_params
-    params.require(:visitor_pass).permit(:visitor_phone_number, :user_id, :resident_phone_number)
+    params.require(:visitor_pass).permit(:visitor_phone_number, :user_id, :active, :created_at, :updated_at)
   end
 end
