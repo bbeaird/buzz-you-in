@@ -20,16 +20,11 @@ class VisitorPassesController < ApplicationController
     formatted_resident_byi_number = params[:To][2..-1]
     user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
     # user = User.where("resident_byi_phone_number = '6505675874'").first
-    visitor_pass = user.visitor_passes.first.where("active = ?", true)
-    # visitor_pass = user.visitor_passes.first.where("active = ?", false)
+    visitor_pass = VisitorPass.where("user_id = ? AND active = ?", user.id, true).first
 
-    p "active_visitor_passes: #{active_visitor_passes}"
-    if active_visitor_passes
-      name = 'Brantley'
-      response = Twilio::TwiML::Response.new do |r|
-        r.Say "Hello #{name}"
-      end
+    if visitor_pass
       render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
+      visitor_pass.update(active: false)
     else
       render '/app/views/visitor_passes/do_not_buzz_in.html.erb', layout: false
     end
