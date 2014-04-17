@@ -19,7 +19,7 @@ class VisitorPassesController < ApplicationController
   def call_from_callbox
     formatted_resident_byi_number = params[:To][2..-1]
     user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
-    visitor_pass = user.visitor_passes.first.where("active? = ?", true)
+    visitor_pass = user.visitor_passes.first.where("active = ?", true)
 
     p "active_visitor_passes: #{active_visitor_passes}"
     if active_visitor_passes
@@ -35,7 +35,7 @@ class VisitorPassesController < ApplicationController
 
   def active_visitor_passes
     formatted_phone_number = params[:From][2..-1]
-    active_passes = User.where("callbox_phone_number = ?", formatted_phone_number).last.visitor_passes.where("active? = ? AND created_at >= ?", true, (Time.now - 4.hours)).last
+    active_passes = User.where("callbox_phone_number = ?", formatted_phone_number).last.visitor_passes.where("active = ? AND created_at >= ?", true, (Time.now - 4.hours)).last
 
     if active_passes.size >= 1
       return true
@@ -47,7 +47,7 @@ class VisitorPassesController < ApplicationController
   def sms_from_visitor
     formatted_visitor_phone_number = params[:From][2..-1]
     visitor_pass = VisitorPass.where("visitor_phone_number = ? AND created_at >= ?", formatted_visitor_phone_number, (Time.now - 4.hours)).last
-    visitor_pass.update_attribute(:active?, true)
+    visitor_pass.update_attribute(:active, true)
   end
 
   private
