@@ -4,7 +4,8 @@ class StaticPagesController < ApplicationController
       @user = current_user
       # @visitor_pass = current_user.visitor_passes.build
       @visitor_pass = VisitorPass.new
-      @active_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 4.hours))
+      @active_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ? AND active = ?", current_user.id, (Time.now - 4.hours), true)
+      @inactive_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ? AND active = ?", current_user.id, (Time.now - 4.hours), false)
     end
 
     session["counter"] ||= 0
