@@ -13,3 +13,19 @@
  */
 
 @import "bootstrap";
+
+.resident-byi-phone-number {
+  color: orange;
+}
+
+.active-unused-visitor-passes {
+  color: green;
+}
+
+.inactive-visitor-passes {
+  color: #FFCC00;
+}
+
+.used-visitor-passes {
+  color: red;
+}
