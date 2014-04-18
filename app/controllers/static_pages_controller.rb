@@ -8,19 +8,6 @@ class StaticPagesController < ApplicationController
       @inactive_visitor_passes = VisitorPass.where("user_id = ? AND active = ? AND used = ?", current_user.id, false, false)
       @used_visitor_passes = VisitorPass.where("user_id = ? AND used = ?", current_user.id, true)
     end
-
-    session["counter"] ||= 0
-    sms_count = session["counter"]
-    if sms_count == 0
-      message = "Hello, thanks for the new message."
-    else
-      message = "Hello, thanks for message number #{sms_count + 1}"
-    end
-    twiml = Twilio::TwiML::Response.new do |r|
-      r.Sms message
-    end
-    session["counter"] += 1
-    p twiml.text
   end
 
   # private
