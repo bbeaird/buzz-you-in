@@ -1,17 +1,8 @@
 <% if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?) %>
-  <div>We need your phone number in order for you to send visitor passes!</div>
-      <%= simple_form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" }, html: { class: "form-vertical" } do |f| %>
-        <%= f.input :resident_phone_number, placeholder: "555-555-5555" %>
-        <%= f.input :callbox_phone_number, placeholder: "555-555-5555" %>
-        <%= f.button :submit %>
-  <% end %>
+  <%= render 'static_pages/gather_phone_numbers' %>
 <% else %>
   <% if user_signed_in? %>
-    <h3 class="resident-byi-phone-number">Put this number in your callbox: <%= current_user.resident_byi_phone_number %></h3>
-    <%= simple_form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" }, html: { class: "form-vertical" } do |f| %>
-      <%= f.input :visitor_phone_number, placeholder: "555-555-5555" %>
-      <%= f.submit "Send Visitor Pass!" %>
-    <% end %>
+    <%= render 'static_pages/visitor_pass_form' %>
 
     <h3>Active and unused visitor passes</h3>
     <ol class="active-unused-visitor-passes">
