@@ -13,14 +13,19 @@
         <%= f.submit "Send Visitor Pass!" %>
       <% end %>
 
-      <h3>Active visitor passes for user with id of <%= current_user.id %></h3>
-      <ol id="active-visitor-passes">
+      <h3>Active and unused visitor passes</h3>
+      <ol id="active-unused-visitor-passes">
         <%= render @active_visitor_passes %>
       </ol>
 
-      <h3>Inactive visitor passes</h3>
+      <h3>Inactive or expired visitor passes</h3>
       <ol id="inactive-visitor-passes">
         <%= render @inactive_visitor_passes %>
+      </ol>
+
+      <h3>Used visitor passes</h3>
+      <ol id="used-visitor-passes">
+        <%= render @used_visitor_passes %>
       </ol>
     <% end %>
   <% end %>

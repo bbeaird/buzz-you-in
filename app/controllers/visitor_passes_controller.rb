@@ -24,7 +24,7 @@ class VisitorPassesController < ApplicationController
 
     if visitor_pass
       render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
-      visitor_pass.update(active: false)
+      visitor_pass.update(used: true)
     else
       render '/app/views/visitor_passes/do_not_buzz_in.html.erb', layout: false
     end
