@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :visitor_passes
+
+  # validates :resident_phone_number, presence: true
+  # validates :callbox_phone_number, presence: true
+  # validates :resident_byi_phone_number, presence: true
 end
