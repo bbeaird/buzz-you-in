@@ -3,20 +3,8 @@
 <% else %>
   <% if user_signed_in? %>
     <%= render 'static_pages/visitor_pass_form' %>
-
-    <h3>Active and unused visitor passes</h3>
-    <ol class="active-unused-visitor-passes">
-      <%= render @active_visitor_passes %>
-    </ol>
-
-    <h3>Inactive or expired visitor passes</h3>
-    <ol class="inactive-visitor-passes">
-      <%= render @inactive_visitor_passes %>
-    </ol>
-
-    <h3>Used visitor passes</h3>
-    <ol class="used-visitor-passes">
-      <%= render @used_visitor_passes %>
+    <ol>
+      <%= render @recent_visitor_passes %>
     </ol>
   <% end %>
 <% end %>

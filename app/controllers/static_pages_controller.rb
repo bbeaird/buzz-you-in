@@ -4,9 +4,11 @@ class StaticPagesController < ApplicationController
       @user = current_user
       # @visitor_pass = current_user.visitor_passes.build
       @visitor_pass = VisitorPass.new
-      @active_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ? AND active = ? AND used = ?", current_user.id, (Time.now - 4.hours), true, false)
-      @inactive_visitor_passes = VisitorPass.where("user_id = ? AND active = ? AND used = ?", current_user.id, false, false)
-      @used_visitor_passes = VisitorPass.where("user_id = ? AND used = ?", current_user.id, true)
+      @recent_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
+
+      # @active_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ? AND active = ? AND used = ?", current_user.id, (Time.now - 4.hours), true, false)
+      # @inactive_visitor_passes = VisitorPass.where("user_id = ? AND active = ? AND used = ?", current_user.id, false, false)
+      # @used_visitor_passes = VisitorPass.where("user_id = ? AND used = ?", current_user.id, true)
     end
   end
 
