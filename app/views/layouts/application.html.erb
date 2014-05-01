@@ -48,7 +48,7 @@
           </a>
           <a class="brand" href="/fucker">BuzzYouIn</a>
           <div class="container nav-collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li><%= link_to "Sign Out!", destroy_user_session_path, method: :delete if user_signed_in? %></li>
               <% else %>
