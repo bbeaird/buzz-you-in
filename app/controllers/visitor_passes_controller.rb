@@ -3,6 +3,23 @@ class VisitorPassesController < ApplicationController
 
   after_filter :set_header
 
+  def index
+    @recent_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
+  end
+
+  def new
+    @visitor_pass = VisitorPass.new
+  end
+
+  def edit
+  end
+
+  def destroy
+  end
+
+  def update
+  end
+
   def create
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
     @visitor_pass.save
