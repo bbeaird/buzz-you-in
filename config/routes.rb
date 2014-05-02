@@ -1,5 +1,7 @@
 BuzzYouIn::Application.routes.draw do
 
+  resources :visitor_passes
+
   # get "users/add_phone_number"
   get 'static_pages/home'
   devise_for :users
