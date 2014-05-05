@@ -15,8 +15,6 @@
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               visitor_passes_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_visitor_pass_path(@visitor_pass), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               visitor_pass_path(@visitor_pass),
               :method => 'delete',
