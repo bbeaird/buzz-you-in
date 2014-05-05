@@ -22,8 +22,6 @@
         <td><%= visitor_pass.used %></td>
         <td><%=l visitor_pass.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_visitor_pass_path(visitor_pass), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       visitor_pass_path(visitor_pass),
                       :method => :delete,

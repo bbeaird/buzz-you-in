@@ -1,11 +1,9 @@
 BuzzYouIn::Application.routes.draw do
 
-  resources :visitor_passes
-
   # get "users/add_phone_number"
   get 'static_pages/home'
   devise_for :users
-  resources :visitor_passes #, only: [:create, :index, :edit, :show, :new]
+  resources :visitor_passes, only: [:create, :index, :new, :destroy]
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end
