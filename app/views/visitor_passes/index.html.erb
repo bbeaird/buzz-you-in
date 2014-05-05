@@ -16,7 +16,7 @@
   <tbody>
     <% @visitor_passes.each do |visitor_pass| %>
       <tr>
-        <td><%= link_to visitor_pass.id, visitor_pass_path(visitor_pass) %></td>
+        <td><%= visitor_pass.id %></td>
         <td><%= visitor_pass.visitor_phone_number %></td>
         <td><%= visitor_pass.active %></td>
         <td><%= visitor_pass.used %></td>
