@@ -22,23 +22,18 @@ class VisitorPassesController < ApplicationController
   # POST /visitor_passes.json
   def create
     # @visitor_pass = VisitorPass.new(visitor_pass_params)
-
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
-    # @visitor_pass.save
 
     respond_to do |format|
       if @visitor_pass.save
-        format.html { redirect_to @visitor_pass, notice: 'Visitor pass was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @visitor_pass }
-
         client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
         client.account.messages.create(
           from: ENV['MY_TWILIO_NUMBER'],
           to: params[:visitor_pass][:visitor_phone_number],
           body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
         )
-    redirect_to root_url
-
+        format.html { redirect_to root_url, notice: 'Visitor pass was successfully created.' }
+        format.json { render action: 'index', status: :created, location: @visitor_pass }
       else
         format.html { render action: 'new' }
         format.json { render json: @visitor_pass.errors, status: :unprocessable_entity }
