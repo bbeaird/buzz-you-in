@@ -8,7 +8,7 @@ BuzzYouIn::Application.routes.draw do
   #   root to: "devise/sessions#new"
   # end
 
-  root 'static_pages#home'
+  root 'visitor_passes#index'
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
   post '/twilio/voice' => 'twilio#voice'
   get '/twilio/voice' => 'twilio#voice'
