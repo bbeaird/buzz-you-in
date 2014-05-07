@@ -41,20 +41,6 @@ class VisitorPassesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /visitor_passes/1
-  # PATCH/PUT /visitor_passes/1.json
-  def update
-    respond_to do |format|
-      if @visitor_pass.update(visitor_pass_params)
-        format.html { redirect_to @visitor_pass, notice: 'Visitor pass was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @visitor_pass.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /visitor_passes/1
   # DELETE /visitor_passes/1.json
   def destroy
