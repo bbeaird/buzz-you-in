@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <%- model_class = VisitorPass -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -36,3 +37,6 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_visitor_pass_path,
             :class => 'btn btn-primary' %>
+<% else %>
+  <h2>You need to sign in mother-fucker!!!</h2>
+<% end %>
