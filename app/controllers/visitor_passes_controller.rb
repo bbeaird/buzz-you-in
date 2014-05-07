@@ -32,7 +32,7 @@ class VisitorPassesController < ApplicationController
           to: params[:visitor_pass][:visitor_phone_number],
           body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
         )
-        format.html { redirect_to root_url, notice: 'Visitor pass was successfully created.' }
+        format.html { redirect_to action: 'index', notice: 'Visitor pass was successfully created.' }
         format.json { render action: 'index', status: :created, location: @visitor_pass }
       else
         format.html { render action: 'new' }
