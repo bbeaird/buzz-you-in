@@ -46,7 +46,7 @@ class VisitorPassesController < ApplicationController
     formatted_resident_byi_number = params[:To][2..-1]
     user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
     # user = User.where("resident_byi_phone_number = '6505675874'").first
-    visitor_pass_to_be_used = VisitorPass.where("user_id = ? AND active = ?", user.id, true).last
+    visitor_pass_to_be_used = VisitorPass.where("user_id = ? AND active = ? AND used = ?", user.id, true, false).last
 
     if visitor_pass_to_be_used
       render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
