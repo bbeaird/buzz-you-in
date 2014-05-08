@@ -1,25 +1,18 @@
 class VisitorPassesController < ApplicationController
   before_action :set_visitor_pass, only: [:show, :edit, :update, :destroy]
 
-  # GET /visitor_passes
-  # GET /visitor_passes.json
   def index
     @visitor_passes = VisitorPass.all
     # @recent_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
   end
 
-  # GET /visitor_passes/1
-  # GET /visitor_passes/1.json
   def show
   end
 
-  # GET /visitor_passes/new
   def new
     @visitor_pass = VisitorPass.new
   end
 
-  # POST /visitor_passes
-  # POST /visitor_passes.json
   def create
     # @visitor_pass = VisitorPass.new(visitor_pass_params)
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
@@ -41,8 +34,6 @@ class VisitorPassesController < ApplicationController
     end
   end
 
-  # DELETE /visitor_passes/1
-  # DELETE /visitor_passes/1.json
   def destroy
     @visitor_pass.destroy
     respond_to do |format|
