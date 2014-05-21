@@ -1,0 +1,6 @@
+<div>We need your phone number in order for you to send visitor passes!</div>
+<%= simple_form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" }, html: { class: "form-vertical" } do |f| %>
+  <%= f.input :resident_phone_number, placeholder: "555-555-5555" %>
+  <%= f.input :callbox_phone_number, placeholder: "555-555-5555" %>
+  <%= f.button :submit %>
+<% end %>

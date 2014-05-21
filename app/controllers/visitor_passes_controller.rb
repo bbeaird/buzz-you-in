@@ -2,8 +2,10 @@ class VisitorPassesController < ApplicationController
   before_action :set_visitor_pass, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @visitor_passes = VisitorPass.all
-    if current_user
+    if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
+      @user = current_user
+      render '_gather_phone_numbers'
+    elsif current_user
       @visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
     end
   end
