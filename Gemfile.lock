@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: ca07ef08fd438433f36127493a9468bd6222378a
+  specs:
+    stripe (1.11.0)
+      json (~> 1.8.1)
+      mime-types (~> 1.25)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -95,6 +104,8 @@ GEM
     rake (10.3.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -170,6 +181,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   simple_form
+  stripe!
   turbolinks
   twilio-ruby
   twitter-bootstrap-rails

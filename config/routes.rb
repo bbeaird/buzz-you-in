@@ -4,6 +4,7 @@ BuzzYouIn::Application.routes.draw do
   get 'static_pages/home'
   devise_for :users
   resources :visitor_passes, only: [:create, :index, :new, :destroy, :show]
+  resources :charges
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end
