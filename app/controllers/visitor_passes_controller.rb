@@ -2,8 +2,10 @@ class VisitorPassesController < ApplicationController
   before_action :set_visitor_pass, only: [:show, :edit, :update, :destroy]
 
   def index
-    @visitor_passes = VisitorPass.all
-    # @recent_visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
+    # @visitor_passes = VisitorPass.all
+    if current_user
+      @visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
+    end
   end
 
   def show
