@@ -54,6 +54,7 @@ gem 'rails_12factor', group: :production
 
 gem 'twitter-bootstrap-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'phony_rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
