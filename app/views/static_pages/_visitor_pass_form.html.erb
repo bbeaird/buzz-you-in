@@ -1,5 +1,0 @@
-<h3 class="resident-byi-phone-number">Put this number in your callbox: <%= current_user.resident_byi_phone_number %></h3>
-  <%= simple_form_for @visitor_pass, url: { controller: "visitor_passes", action: "create" }, html: { class: "form-vertical" } do |f| %>
-  <%= f.input :visitor_phone_number, placeholder: "555-555-5555" %>
-  <%= f.submit "Send Visitor Pass!" %>
-<% end %>
