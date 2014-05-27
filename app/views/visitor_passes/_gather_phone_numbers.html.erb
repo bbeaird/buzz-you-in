@@ -1,6 +1,6 @@
-<h4 id="gather-phone-numbers-intro">We need your phone number in order for you to send visitor passes!</h4>
+<h4 id="gather-phone-numbers-intro">We need your cell phone and callbox phone numbers in order for you to send visitor passes!</h4>
 <%= simple_form_for @user, url: { controller: "users", action: "add_phone_numbers", method: "patch" }, html: { class: "form-vertical" } do |f| %>
-  <%= f.input :resident_phone_number, placeholder: "555-555-5555" %>
+  <%= f.input :resident_phone_number, label: "Cell phone number", placeholder: "555-555-5555" %>
   <%= f.input :callbox_phone_number, placeholder: "555-555-5555" %>
   <%= f.button :submit %>
 <% end %>
