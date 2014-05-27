@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
   def add_phone_numbers
     @user = current_user
-    formatted_resident_phone_number = params[:user][:resident_phone_number].gsub(/\D/, '')
-    formatted_callbox_phone_number = params[:user][:callbox_phone_number].gsub(/\D/, '')
 
     @user.update(resident_phone_number: formatted_resident_phone_number, callbox_phone_number: formatted_callbox_phone_number)
     redirect_to root_url
+  end
+
+  def formatted_resident_phone_number
+    formatted_resident_phone_number = params[:user][:resident_phone_number].gsub(/\D/, '')
+  end
+
+  def formatted_callbox_phone_number
+    formatted_callbox_phone_number = params[:user][:callbox_phone_number].gsub(/\D/, '')
   end
 
   private
