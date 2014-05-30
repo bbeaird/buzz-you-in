@@ -6,16 +6,16 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  private
+  def user_params
+    params.require(:user).permit(:resident_phone_number, :callbox_phone_number, :resident_byi_phone_number, :created_at, :updated_at)
+  end
+
   def formatted_resident_phone_number
     formatted_resident_phone_number = params[:user][:resident_phone_number].gsub(/\D/, '')
   end
 
   def formatted_callbox_phone_number
     formatted_callbox_phone_number = params[:user][:callbox_phone_number].gsub(/\D/, '')
-  end
-
-  private
-  def user_params
-    params.require(:user).permit(:resident_phone_number, :callbox_phone_number, :resident_byi_phone_number, :created_at, :updated_at)
   end
 end

@@ -65,6 +65,10 @@ class VisitorPassesController < ApplicationController
     visitor_pass.update_attribute(:active, true)
   end
 
+  # def formatted_visitor_phone_number
+  #   formatted_visitor_phone_number = params[:From][2..-1]
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_visitor_pass
