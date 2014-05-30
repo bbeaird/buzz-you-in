@@ -18,7 +18,6 @@ class VisitorPassesController < ApplicationController
   end
 
   def create
-    # @visitor_pass = VisitorPass.new(visitor_pass_params)
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
 
     respond_to do |format|
