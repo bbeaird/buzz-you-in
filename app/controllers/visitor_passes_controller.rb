@@ -19,7 +19,6 @@ class VisitorPassesController < ApplicationController
 
   def create
     @visitor_pass = current_user.visitor_passes.build(visitor_pass_params)
-    @visitor_pass.update(visitor_phone_number: visitor_phone_number.gsub(/\D/, ''))
 
     respond_to do |format|
       if @visitor_pass.save
