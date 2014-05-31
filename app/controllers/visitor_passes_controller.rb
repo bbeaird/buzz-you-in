@@ -5,7 +5,7 @@ class VisitorPassesController < ApplicationController
     if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
       @user = current_user
       render '_gather_phone_numbers'
-    elsif current_user.stripe_token.blank?
+    elsif user_signed_in? && current_user.stripe_customer_id.blank?
       render 'app/views/charges/new'
     elsif current_user
       @visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
