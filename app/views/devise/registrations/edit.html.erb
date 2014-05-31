@@ -5,8 +5,8 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true %>
-    <%= f.input :resident_phone_number, placeholder: "#{current_user.resident_phone_number}" %>
-    <%= f.input :callbox_phone_number, placeholder: "#{current_user.callbox_phone_number}" %>
+    <%= f.input :resident_phone_number, placeholder: "#{current_user.resident_phone_number}", required: true %>
+    <%= f.input :callbox_phone_number, placeholder: "#{current_user.callbox_phone_number}", required: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
