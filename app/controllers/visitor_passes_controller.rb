@@ -10,9 +10,6 @@ class VisitorPassesController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def new
     @visitor_pass = VisitorPass.new
   end
