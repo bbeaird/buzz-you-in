@@ -60,15 +60,6 @@ class VisitorPassesController < ApplicationController
     visitor_pass.update_attribute(:active, true)
   end
 
-  def send_visitor_a_visitor_pass
-    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-        client.account.messages.create(
-          from: ENV['MY_TWILIO_NUMBER'],
-          to: params[:visitor_pass][:visitor_phone_number],
-          body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
-        )
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_visitor_pass
@@ -79,4 +70,13 @@ class VisitorPassesController < ApplicationController
     def visitor_pass_params
       params.require(:visitor_pass).permit(:visitor_phone_number, :active, :used)
     end
+
+    def send_visitor_a_visitor_pass
+    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+        client.account.messages.create(
+          from: ENV['MY_TWILIO_NUMBER'],
+          to: params[:visitor_pass][:visitor_phone_number],
+          body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
+        )
+  end
   end
