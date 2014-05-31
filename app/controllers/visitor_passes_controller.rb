@@ -22,12 +22,7 @@ class VisitorPassesController < ApplicationController
 
     respond_to do |format|
       if @visitor_pass.save
-        client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-        client.account.messages.create(
-          from: ENV['MY_TWILIO_NUMBER'],
-          to: params[:visitor_pass][:visitor_phone_number],
-          body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
-        )
+        send_visitor_a_visitor_pass
         format.html { redirect_to action: 'index', notice: 'Visitor pass was successfully created.' }
         format.json { render action: 'index', status: :created, location: @visitor_pass }
       else
@@ -48,7 +43,7 @@ class VisitorPassesController < ApplicationController
   def call_from_callbox
     # Each user will eventually have a unique BYI phone number purchased from Twilio. Current default is 6505675874.
     formatted_resident_byi_number = params[:To][2..-1]
-    user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).first
+    user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).last
     visitor_pass_to_be_used = VisitorPass.where("user_id = ? AND active = ? AND used = ?", user.id, true, false).last
 
     if visitor_pass_to_be_used
@@ -65,9 +60,14 @@ class VisitorPassesController < ApplicationController
     visitor_pass.update_attribute(:active, true)
   end
 
-  # def formatted_visitor_phone_number
-  #   formatted_visitor_phone_number = params[:From][2..-1]
-  # end
+  def send_visitor_a_visitor_pass
+    client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+        client.account.messages.create(
+          from: ENV['MY_TWILIO_NUMBER'],
+          to: params[:visitor_pass][:visitor_phone_number],
+          body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
+        )
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
