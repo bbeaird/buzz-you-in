@@ -1,0 +1,5 @@
+<h4>The phone number you select below is the number that will be put in your apartment's callbox. You'll have to email your property manager to do this.</h4>
+<%= simple_form_for @user, url: { controller: "users", action: "add_resident_byi_phone_number", method: "patch" }, html: { class: "form-vertical" } do |f| %>
+<%= f.input :resident_byi_phone_number %>
+<%= f.button :submit %>
+<% end %>
