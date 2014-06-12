@@ -1,5 +1,9 @@
-<h4>The phone number you select below is the number that will be put in your apartment's callbox. You'll have to email your property manager to do this.</h4>
-<%= simple_form_for @user, url: { controller: "users", action: "add_resident_byi_phone_number", method: "patch" }, html: { class: "form-vertical" } do |f| %>
-<%= f.input :resident_byi_phone_number %>
-<%= f.button :submit %>
-<% end %>
+<head><title>Find a Twilio number to buy</title></head>
+<body><h3>Find a Twilio number to buy</h3>
+  <form method="POST">
+    <label>Near US postal code (e.g. 94117): </label><input type="text" size="4" name="in_postal_code"/><br/>
+    <label>Near this other number (e.g. 415-656-2345): </label><input type="text" size="7" name="near_number"/><br/>
+    <label>Matching this pattern (e.g. 415***EPIC): </label><input type="text" size="7" name="contains"/><br/>
+    <input type="submit" value="SEARCH"/>
+  </form>
+</body>
