@@ -23,6 +23,15 @@ class UsersController < ApplicationController
     begin
       local_numbers = client.account.available_phone_numbers.get('US').local
       @numbers =local_numbers.list(search_params)
+      p '*'*50
+      p search_params
+      p '*'*50
+      p local_numbers
+      p '*'*50
+      @numbers.each do |x|
+        p x.friendly_name
+      end
+      p '*'*50
     end
   end
 

@@ -1,14 +1,8 @@
-<% unless @numbers.empty? %>
-  <html><head><title>Choose a number</title></head><body><h3>Choose a number</h3>
-    <% @numbers.each do |number| %>
-      <form method='POST' action='/buy-number'>
-      <label>#{number.friendly_name}</label>
-      <input type='hidden' name='PhoneNumber' value='#{number.phone_number}' />
-      <input type='submit' value='BUY' /></form>
-    <% end %>
-  </body></html>
-<% else %>
-  <b>Sorry! </b>Twilio doesn't have any numbers available that match those constraints.
-<% end %>
-<% rescue StandardError => e %>
-  <% '<b>Sorry! </b>' + e.message %>
+<html><head><title>Choose a number</title></head><body><h3>Choose a number</h3>
+  <% @numbers.each do |number| %>
+    <form method='POST' action='/buy-number'>
+    <label><%= number.friendly_name %></label>
+    <input type='hidden' name='PhoneNumber' value='<%= number.phone_number %>' />
+    <input type='submit' value='BUY' /></form>
+  <% end %>
+</body></html>
