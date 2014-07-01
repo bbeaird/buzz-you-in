@@ -1,9 +1,10 @@
 <head><title>Find a Twilio number to buy</title></head>
 <body><h3>Find a Twilio number to buy</h3>
-  <form method="POST", action="search_for_twilio_numbers">
+  <form method="POST", action="search_for_twilio_numbers", controller="users">
+    <label>Area code (e.g. 415): </label><input type="text" size="4" name="area_code"/><br/>
     <label>Near US postal code (e.g. 94117): </label><input type="text" size="4" name="in_postal_code"/><br/>
     <label>Near this other number (e.g. 415-656-2345): </label><input type="text" size="7" name="near_number"/><br/>
     <label>Matching this pattern (e.g. 415***EPIC): </label><input type="text" size="7" name="contains"/><br/>
-    <input type="submit" value="SEARCH"/>
+    <input type="submit" value="Search"/>
   </form>
 </body>

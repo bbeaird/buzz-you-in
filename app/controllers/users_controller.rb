@@ -16,22 +16,16 @@ class UsersController < ApplicationController
   def search_for_twilio_numbers
     client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     search_params = {}
-    %w[in_postal_code near_number contains].each do |p|
-      search_params[p] = params[p] unless params[p].nil? || params[p].empty?
+    p "params === #{params}"
+    [:area_code].each do |p|
+      search_params[p] = params[p.to_s] unless params[p].nil? || params[p].empty?
     end
 
-    begin
-      local_numbers = client.account.available_phone_numbers.get('US').local
-      @numbers =local_numbers.list(search_params)
-      p '*'*50
-      p search_params
-      p '*'*50
-      p local_numbers
-      p '*'*50
-      @numbers.each do |x|
-        p x.friendly_name
-      end
-      p '*'*50
+    local_numbers = client.account.available_phone_numbers.get('US').local
+    @numbers = local_numbers.list(search_params)
+    @numbers.each do |num|
+      p "About to puts num.friendly_name**************"
+      puts num.friendly_name
     end
   end
 
