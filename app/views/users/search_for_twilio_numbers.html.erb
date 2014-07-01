@@ -1,9 +1,9 @@
 <html><head><title>Choose a number</title></head>
 <body><h3>Choose a number</h3>
   <% @numbers.each do |number| %>
-    <form method='POST' action='/buy-number'>
+    <form method='post' action='/buy-number'>
     <label><%= number.friendly_name %></label>
     <input type='hidden' name='PhoneNumber' value='<%= number.phone_number %>' />
-    <input type='submit' value='BUY' /></form>
+    <input type='submit' value='Buy' /></form>
   <% end %>
 </body></html>
