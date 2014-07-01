@@ -21,6 +21,7 @@ BuzzYouIn::Application.routes.draw do
   patch '/users/add_resident_byi_phone_number', to: 'users#add_resident_byi_phone_number'
 
   post '/search_for_twilio_numbers', to: 'users#search_for_twilio_numbers'
+  post '/buy_twilio_number', to: 'users#buy_twilio_number'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
