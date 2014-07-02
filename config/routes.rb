@@ -23,7 +23,12 @@ BuzzYouIn::Application.routes.draw do
   patch '/users/add_resident_byi_phone_number', to: 'users#add_resident_byi_phone_number'
 
   get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
+  post '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
+
   post '/search_for_twilio_numbers', to: 'users#search_for_twilio_numbers'
+
+  get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+  post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
 
   post '/buy_twilio_number', to: 'users#buy_twilio_number'
 

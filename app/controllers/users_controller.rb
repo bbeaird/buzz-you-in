@@ -15,13 +15,17 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  # def list_twilio_numbers
+  #   @user = current_user
+  # end
+
   # def add_resident_byi_phone_number
   #   @user = current_user
   #   @user.update(resident_byi_phone_number: params[:user][:resident_byi_phone_number])
   #   redirect_to root_url
   # end
 
-  def search_for_twilio_numbers
+  def list_twilio_numbers
     @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     search_params = {}
     search_params[:area_code] = params["area_code"] unless params["area_code"].nil? || params["area_code"].empty?
