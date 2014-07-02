@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :search_for_twilio_numbers
 
+  def gather_phone_numbers
+    @user = current_user
+  end
+
   def add_phone_numbers
     @user = current_user
     @user.update(resident_phone_number: params[:user][:resident_phone_number], callbox_phone_number: params[:user][:callbox_phone_number])
     redirect_to root_url
+  end
+
+  def search_for_twilio_number
+    @user = current_user
   end
 
   # def add_resident_byi_phone_number

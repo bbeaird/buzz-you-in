@@ -4,13 +4,13 @@ class VisitorPassesController < ApplicationController
   def index
     if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
       @user = current_user
-      render '_gather_phone_numbers'
+      redirect_to '/users/gather_phone_numbers'
     elsif user_signed_in? && current_user.stripe_customer_id.blank?
-      render 'app/views/charges/new'
+      render '/app/views/charges/new'
     # elsif current_user.resident_byi_phone_number.blank? # use this once we remove the default resident_byi_phone_number
     elsif user_signed_in? && current_user.resident_byi_phone_number == '6505675874'
       @user = current_user
-      render '_buy_twilio_number'
+      redirect_to '/users/search_for_twilio_number'
     elsif current_user
       @visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
     end

@@ -17,10 +17,14 @@ BuzzYouIn::Application.routes.draw do
   post '/twilio/voice' => 'twilio#voice'
   get '/twilio/voice' => 'twilio#voice'
 
-  patch '/users/add_phone_number', to: 'users#add_phone_numbers'
+  get '/users/gather_phone_numbers', to: 'users#gather_phone_numbers'
+
+  patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
   patch '/users/add_resident_byi_phone_number', to: 'users#add_resident_byi_phone_number'
 
+  get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
   post '/search_for_twilio_numbers', to: 'users#search_for_twilio_numbers'
+
   post '/buy_twilio_number', to: 'users#buy_twilio_number'
 
   # The priority is based upon order of creation: first created -> highest priority.
