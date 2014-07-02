@@ -25,10 +25,13 @@ class UsersController < ApplicationController
     p params
     @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     # @client = Twilio::REST::Client.new(ENV['TEST_TWILIO_ACCOUNT_SID'], ENV['TEST_TWILIO_AUTH_TOKEN'])
-    # number = @client.account.incoming_phone_numbers.create(:phone_number => "+15005550006")
-    number = @client.account.incoming_phone_numbers.create(:phone_number => params["phone_number"])
-    p number
-    p number.sms_url
+    number = @client.account.incoming_phone_numbers.create(:phone_number => "+15005550006")
+    # number = @client.account.incoming_phone_numbers.create(:phone_number => params["phone_number"])
+    rescue Twilio::REST::RequestError => e
+      puts "************* I am rescuing you bitch!"
+      # flash[:notice] = "Test flash message bia!!!!!"
+      flash[:notice] = e.message
+      # redirect_to root_url
   end
 
   private
