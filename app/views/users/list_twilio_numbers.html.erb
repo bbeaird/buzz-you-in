@@ -1,7 +1,7 @@
 <html><head><title>Choose a number</title></head>
 <body><h3>Choose a number</h3>
   <% @numbers.each do |number| %>
-    <form method='post' action='/buy_twilio_number'>
+    <form method='post' controller='users' action='buy_twilio_number'>
     <label><%= number.friendly_name %></label>
     <input type='hidden' name='phone_number' value='<%= number.phone_number %>' />
     <input type='submit' value='Buy' /></form>

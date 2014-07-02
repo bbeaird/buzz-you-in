@@ -11,26 +11,23 @@ BuzzYouIn::Application.routes.draw do
 
   root 'visitor_passes#index'
 
+  get '/users/gather_phone_numbers', to: 'users#gather_phone_numbers'
+  patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
+
+  get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
+  post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+  # get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+  post '/users/buy_twilio_number', to: 'users#buy_twilio_number'
+
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
   get '/sms-from-visitor', to: 'visitor_passes#sms_from_visitor'
 
   post '/twilio/voice' => 'twilio#voice'
   get '/twilio/voice' => 'twilio#voice'
 
-  get '/users/gather_phone_numbers', to: 'users#gather_phone_numbers'
-
-  patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
   patch '/users/add_resident_byi_phone_number', to: 'users#add_resident_byi_phone_number'
 
-  get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
-  post '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
 
-  post '/search_for_twilio_numbers', to: 'users#search_for_twilio_numbers'
-
-  get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-  post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-
-  post '/buy_twilio_number', to: 'users#buy_twilio_number'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
