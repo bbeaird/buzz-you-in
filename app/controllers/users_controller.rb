@@ -14,9 +14,13 @@ class UsersController < ApplicationController
   def search_for_twilio_number
   end
 
+  def send_area_code
+    redirect_to list_twilio_numbers
+  end
+
   def list_twilio_numbers
-    p '*'*50
     @user = current_user
+    p '*'*50
     p @user
     @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     search_params = {}
@@ -34,7 +38,7 @@ class UsersController < ApplicationController
     @user = current_user
     p @user
     p params["phone_number"]
-    @user.update(resident_byi_phone_number: params["phone_number"])
+    # @user.update(resident_byi_phone_number: params["phone_number"])
     # number = @client.account.incoming_phone_numbers.create(:phone_number => params["phone_number"])
     rescue Twilio::REST::RequestError => e
       puts "************* I am rescuing you bitch!"

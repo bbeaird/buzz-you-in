@@ -5,7 +5,8 @@ class VisitorPassesController < ApplicationController
     if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
       redirect_to '/users/gather_phone_numbers'
     elsif user_signed_in? && current_user.stripe_customer_id.blank?
-      render '/app/views/charges/new'
+      # render '/app/views/charges/new'
+      redirect_to '/charges/new'
     # elsif current_user.resident_byi_phone_number.blank? # use this once we remove the default resident_byi_phone_number
     elsif user_signed_in? && current_user.resident_byi_phone_number == '6505675874'
       redirect_to '/users/search_for_twilio_number'

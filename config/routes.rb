@@ -1,6 +1,5 @@
 BuzzYouIn::Application.routes.draw do
 
-  # get "users/add_phone_number"
   get 'static_pages/home'
   devise_for :users
   resources :visitor_passes, only: [:create, :index, :new, :destroy]
@@ -15,8 +14,11 @@ BuzzYouIn::Application.routes.draw do
   patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
 
   get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
-  post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-  # get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+
+  # post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+  post '/users/list_twilio_numbers', to: 'users#send_area_code'
+  get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
+
   post '/users/buy_twilio_number', to: 'users#buy_twilio_number'
 
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
