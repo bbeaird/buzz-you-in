@@ -20,6 +20,7 @@ BuzzYouIn::Application.routes.draw do
   get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
 
   post '/users/buy_twilio_number', to: 'users#buy_twilio_number'
+  patch '/users/save_bought_number', to: 'users#save_bought_number'
 
   get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
   get '/sms-from-visitor', to: 'visitor_passes#sms_from_visitor'

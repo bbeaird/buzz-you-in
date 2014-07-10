@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def send_area_code
-    # p 'WWWWWWWWWWWWWWWWWWWWWWWWWWWWW'
     @user = current_user
     p @user
     @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
     local_numbers = @client.account.available_phone_numbers.get('US').local
     $numbers = local_numbers.list(search_params)
     # render '/app/views/users/list_twilio_numbers'
-    # redirect_to(@numbers, action: 'list_twilio_numbers')
     redirect_to(action: 'list_twilio_numbers')
   end
 
@@ -41,19 +39,21 @@ class UsersController < ApplicationController
   end
 
   def buy_twilio_number
-    @user = current_user
     @client = Twilio::REST::Client.new(ENV['TEST_TWILIO_ACCOUNT_SID'], ENV['TEST_TWILIO_AUTH_TOKEN'])
     number = @client.account.incoming_phone_numbers.create(:phone_number => "+15005550006")
-    @user = current_user
-    p @user
-    p params["phone_number"]
     # @user.update(resident_byi_phone_number: params["phone_number"])
     # number = @client.account.incoming_phone_numbers.create(:phone_number => params["phone_number"])
+    redirect_to action: save_bought_number
     rescue Twilio::REST::RequestError => e
       puts "************* I am rescuing you bitch!"
       # flash[:notice] = "Test flash message bia!!!!!"
       flash[:notice] = e.message
-      # redirect_to root_url
+      redirect_to action: save_bought_number
+  end
+
+  def save_bought_number
+    @user = current_user
+    @user.update(resident_byi_phone_number: params["phone_number"])
   end
 
   # def add_resident_byi_phone_number
