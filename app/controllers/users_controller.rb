@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_filter :verify_authenticity_token, only: :search_for_twilio_numbers
+  skip_before_filter :verify_authenticity_token, only: :search_for_twilio_numbers
 
   def gather_phone_numbers
     @user = current_user
@@ -15,24 +15,33 @@ class UsersController < ApplicationController
   end
 
   def send_area_code
-    redirect_to list_twilio_numbers
-  end
-
-  def list_twilio_numbers
+    # p 'WWWWWWWWWWWWWWWWWWWWWWWWWWWWW'
     @user = current_user
-    p '*'*50
     p @user
     @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     search_params = {}
     search_params[:area_code] = params["area_code"] unless params["area_code"].nil? || params["area_code"].empty?
     local_numbers = @client.account.available_phone_numbers.get('US').local
-    @numbers = local_numbers.list(search_params)
+    $numbers = local_numbers.list(search_params)
+    # render '/app/views/users/list_twilio_numbers'
+    # redirect_to(@numbers, action: 'list_twilio_numbers')
+    redirect_to(action: 'list_twilio_numbers')
+  end
+
+  def list_twilio_numbers
+    # @user = current_user
+    # p @user
+    # @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+    # search_params = {}
+    # search_params[:area_code] = params["area_code"] unless params["area_code"].nil? || params["area_code"].empty?
+    # local_numbers = @client.account.available_phone_numbers.get('US').local
+    # @numbers = local_numbers.list(search_params)
+    # render '/app/views/users/list_twilio_numbers'
+    # redirect_to root_url(@user)
   end
 
   def buy_twilio_number
     @user = current_user
-    p @user
-    # @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     @client = Twilio::REST::Client.new(ENV['TEST_TWILIO_ACCOUNT_SID'], ENV['TEST_TWILIO_AUTH_TOKEN'])
     number = @client.account.incoming_phone_numbers.create(:phone_number => "+15005550006")
     @user = current_user

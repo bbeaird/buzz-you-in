@@ -16,7 +16,7 @@ BuzzYouIn::Application.routes.draw do
   get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
 
   # post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-  post '/users/list_twilio_numbers', to: 'users#send_area_code'
+  post '/users/send_area_code', to: 'users#send_area_code'
   get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
 
   post '/users/buy_twilio_number', to: 'users#buy_twilio_number'
