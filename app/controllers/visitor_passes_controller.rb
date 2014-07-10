@@ -3,7 +3,6 @@ class VisitorPassesController < ApplicationController
 
   def index
     if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
-      @user = current_user
       redirect_to '/users/gather_phone_numbers'
     elsif user_signed_in? && current_user.stripe_customer_id.blank?
       render '/app/views/charges/new'
