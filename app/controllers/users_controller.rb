@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def search_for_twilio_number
-    @user = current_user
   end
 
   def list_twilio_numbers

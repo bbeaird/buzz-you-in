@@ -8,7 +8,6 @@ class VisitorPassesController < ApplicationController
       render '/app/views/charges/new'
     # elsif current_user.resident_byi_phone_number.blank? # use this once we remove the default resident_byi_phone_number
     elsif user_signed_in? && current_user.resident_byi_phone_number == '6505675874'
-      @user = current_user
       redirect_to '/users/search_for_twilio_number'
     elsif current_user
       @visitor_passes = VisitorPass.where("user_id = ? AND created_at >= ?", current_user.id, (Time.now - 1.week))
