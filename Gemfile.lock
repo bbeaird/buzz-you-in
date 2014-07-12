@@ -79,6 +79,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     minitest (4.7.5)
+    mixpanel-ruby (1.4.0)
     multi_json (1.9.3)
     newrelic_rpm (3.8.1.221)
     orm_adapter (0.5.0)
@@ -185,6 +186,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 1.2)
   jquery-rails
+  mixpanel-ruby
   newrelic_rpm
   pg
   phony_rails

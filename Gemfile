@@ -57,6 +57,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'phony_rails'
 gem 'newrelic_rpm'
 gem 'quiet_assets', :group => :development
+gem 'mixpanel-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
