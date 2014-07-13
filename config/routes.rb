@@ -1,7 +1,8 @@
 BuzzYouIn::Application.routes.draw do
 
+  get "registration/create"
   get 'static_pages/home'
-  devise_for :users
+  devise_for :users, controllers: { registrations: "my_registrations" }
   resources :visitor_passes, only: [:create, :index, :new, :destroy]
   resources :charges
   # devise_scope :user do

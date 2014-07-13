@@ -2,7 +2,6 @@ class VisitorPassesController < ApplicationController
   before_action :set_visitor_pass, only: [:show, :edit, :update, :destroy]
 
   def index
-    p '8'*50
     distinct_id = JSON.parse(cookies[ENV['MIXPANEL_COOKIE_KEY']])["distinct_id"]
     tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
     tracker.track(distinct_id, 'User visits homepage!')
