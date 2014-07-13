@@ -2,6 +2,11 @@ class VisitorPassesController < ApplicationController
   before_action :set_visitor_pass, only: [:show, :edit, :update, :destroy]
 
   def index
+    p '8'*50
+    distinct_id = JSON.parse(cookies[ENV['MIXPANEL_COOKIE_KEY']])["distinct_id"]
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
+    tracker.track(distinct_id, 'User visits homepage!')
+
     if user_signed_in? && (current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank?)
       redirect_to '/users/gather_phone_numbers'
     elsif user_signed_in? && current_user.stripe_customer_id.blank?
