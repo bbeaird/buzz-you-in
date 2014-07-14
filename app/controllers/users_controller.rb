@@ -18,12 +18,11 @@ class UsersController < ApplicationController
 
   def send_area_code
     @user = current_user
-    p @user
-    @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
     search_params = {}
     search_params[:area_code] = params["area_code"] unless params["area_code"].nil? || params["area_code"].empty?
-    local_numbers = @client.account.available_phone_numbers.get('US').local
+    local_numbers = $twilio.account.available_phone_numbers.get('US').local
     $numbers = local_numbers.list(search_params)
+    LocalNumbers.in_area_code(params[:area_code])
     # render '/app/views/users/list_twilio_numbers'
     redirect_to(action: 'list_twilio_numbers')
   end

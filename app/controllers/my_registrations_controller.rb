@@ -6,8 +6,5 @@ class MyRegistrationsController < Devise::RegistrationsController
     tracker.people.set(distinct_id, {
       '$email' => current_user.email
       })
-
-    p params
-    p 'I can do it!!!!!!!!!!!!!!!'
   end
 end

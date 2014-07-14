@@ -51,9 +51,10 @@ class VisitorPassesController < ApplicationController
     formatted_resident_byi_number = params[:To][2..-1]
     user = User.where("resident_byi_phone_number = ?", formatted_resident_byi_number).last
     visitor_pass_to_be_used = VisitorPass.where("user_id = ? AND active = ? AND used = ?", user.id, true, false).last
+    VisitorPass.where(user_id: user.id, active: true, used: false)
 
     if visitor_pass_to_be_used
-      render '/app/views/visitor_passes/call_from_callbox.html.erb', layout: false
+      render :call_from_callbox, layout: false
       visitor_pass_to_be_used.update(used: true)
     else
       render '/app/views/visitor_passes/do_not_buzz_in.html.erb', layout: false
@@ -63,7 +64,8 @@ class VisitorPassesController < ApplicationController
   def sms_from_visitor
     formatted_visitor_phone_number = params[:From][2..-1]
     visitor_pass = VisitorPass.where("visitor_phone_number = ? AND created_at >= ?", formatted_visitor_phone_number, (Time.now - 4.hours)).last
-    visitor_pass.update_attribute(:active, true)
+    VisitorPass.where(visitor_phone_number: that, created_at: 4.hours.ago...Time.now)
+    visitor_pass.update(active: true)
   end
 
   private
@@ -78,11 +80,13 @@ class VisitorPassesController < ApplicationController
     end
 
     def send_visitor_a_visitor_pass
+      visitor_pass.send_to(user)
+      WELCOME_MESSAGE = "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
     client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
         client.account.messages.create(
           from: ENV['MY_TWILIO_NUMBER'],
           to: params[:visitor_pass][:visitor_phone_number],
-          body: "Hey visitor! Here is your visitor pass. Reply to this text message with 'here' when you're at the callbox."
+          body: WELCOME_MESSAGE
         )
     end
 end
