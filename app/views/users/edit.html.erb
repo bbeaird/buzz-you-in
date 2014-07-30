@@ -5,8 +5,6 @@
   <%= f.text_field :resident_phone_number, placeholder: "555-555-5555" %>
   <%= f.label :callbox_phone_number %>
   <%= f.text_field :callbox_phone_number, placeholder: "666-666-6666" %>
-  <%= f.label :resident_byi_phone_number %>
-  <%= f.text_field :resident_byi_phone_number %>
   <br>
   <%= f.submit %>
 <% end %>
@@ -14,5 +12,11 @@
 <% if @user.stripe_customer_id.blank? %>
   <%= button_to "Pay", new_charge_path, method: 'get' %>
 <% else %>
-  <div id="paid">You have paid!</div>
+  <h3 id="paid">You have paid!</h3>
+<% end %>
+
+<% if @user.resident_byi_phone_number.blank? %>
+  <%= button_to "Get Buzz You In Number", '#' %>
+<% else %>
+  <h3 id="byi-number">Your Buzz You In number is <%="#{@user.resident_byi_phone_number}"%></h3>
 <% end %>

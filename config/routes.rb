@@ -9,7 +9,6 @@ BuzzYouIn::Application.routes.draw do
 
   root 'visitor_passes#index'
 
-  get '/users/gather_phone_numbers', to: 'users#gather_phone_numbers'
   patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
 
   get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'

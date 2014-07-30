@@ -14,10 +14,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def gather_phone_numbers
-    @user = current_user
-  end
-
   def add_phone_numbers
     @user = current_user
     @user.update(resident_phone_number: params[:user][:resident_phone_number], callbox_phone_number: params[:user][:callbox_phone_number])
