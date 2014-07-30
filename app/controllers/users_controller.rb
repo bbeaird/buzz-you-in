@@ -2,11 +2,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :search_for_twilio_numbers
 
   def edit
-    @user = User.find(1)
-  end
-
-  def update
-
+    @user = current_user
   end
 
   def gather_phone_numbers

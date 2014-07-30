@@ -4,11 +4,16 @@ class VisitorPassesController < ApplicationController
 
 
   def index
-    # distinct_id = JSON.parse(cookies[ENV['MIXPANEL_COOKIE_KEY']])["distinct_id"]
-    # tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
-    # tracker.track(distinct_id, 'User visits homepage!')
-    if user_signed_in?
-      @visitor_passes = current_user.visitor_passes
+    distinct_id = JSON.parse(cookies[ENV['MIXPANEL_COOKIE_KEY']])["distinct_id"]
+    tracker = Mixpanel::Tracker.new(ENV['MIXPANEL_TOKEN'])
+    tracker.track(distinct_id, 'User visits homepage!')
+    @user = current_user
+
+    if user_signed_in? && !(current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank? || current_user.stripe_customer_id.blank? || current_user.resident_byi_phone_number.blank?)
+      redirect_to edit_user_path(@user)
+    elsif user_signed_in?
+      redirect_to edit_user_path(@user)
+      # @visitor_passes = current_user.visitor_passes
     else
       redirect_to new_user_session_path
     end
