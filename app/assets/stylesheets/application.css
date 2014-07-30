@@ -12,3 +12,7 @@ body { padding-top: 60px; }
   width: 380px;
   margin-bottom: 20px;
 }
+
+#paid {
+  background-color: yellow;
+}
