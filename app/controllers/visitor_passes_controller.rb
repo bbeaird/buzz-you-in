@@ -12,8 +12,7 @@ class VisitorPassesController < ApplicationController
     if user_signed_in? && !(current_user.resident_phone_number.blank? || current_user.callbox_phone_number.blank? || current_user.stripe_customer_id.blank? || current_user.resident_byi_phone_number.blank?)
       redirect_to edit_user_path(@user)
     elsif user_signed_in?
-      redirect_to edit_user_path(@user)
-      # @visitor_passes = current_user.visitor_passes
+      @visitor_passes = current_user.visitor_passes
     else
       redirect_to new_user_session_path
     end

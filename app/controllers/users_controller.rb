@@ -5,6 +5,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update
+    @user = current_user
+    p "user_params: #{user_params}"
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
   def gather_phone_numbers
     @user = current_user
   end
