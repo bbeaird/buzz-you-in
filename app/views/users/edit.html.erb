@@ -1,0 +1,10 @@
+<%= form_for @user do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email, placeholder: "billybob@hotmail.biz" %>
+  <%= f.label :resident_phone_number %>
+  <%= f.text_field :resident_phone_number, label: "Cell phone number", placeholder: "555-555-5555" %>
+  <%= f.label :callbox_phone_number %>
+  <%= f.text_field :callbox_phone_number, label: "Callbox phone number", placeholder: "666-666-6666" %>
+  <br>
+  <%= f.submit %>
+<% end %>

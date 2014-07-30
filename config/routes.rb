@@ -5,6 +5,7 @@ BuzzYouIn::Application.routes.draw do
   devise_for :users, controllers: { registrations: "my_registrations" }
   resources :visitor_passes, only: [:create, :index, :new, :destroy]
   resources :charges
+  resources :users
 
   root 'visitor_passes#index'
 
