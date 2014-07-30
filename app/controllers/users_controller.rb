@@ -7,9 +7,8 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    p "user_params: #{user_params}"
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to visitor_passes_path
     else
       render 'edit'
     end
@@ -79,6 +78,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:resident_phone_number, :callbox_phone_number, :resident_byi_phone_number, :created_at, :updated_at)
+    params.require(:user).permit(:email, :resident_phone_number, :callbox_phone_number, :resident_byi_phone_number, :created_at, :updated_at)
   end
 end
