@@ -24,7 +24,7 @@
         <td><%= visitor_pass.created_at.to_formatted_s(:long_ordinal) %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      visitor_pass_path(visitor_pass),
+                      user_visitor_pass_path(visitor_pass),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
@@ -35,7 +35,7 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_visitor_pass_path,
+            new_user_visitor_pass_path,
             :class => 'btn btn-primary' %>
 <% else %>
   <h2>Ahhhhhhhhhhhhh!!! You need to sign up or sign in!</h2>

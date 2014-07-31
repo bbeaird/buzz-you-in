@@ -1,10 +1,10 @@
 BuzzYouIn::Application.routes.draw do
 
-  get 'static_pages/home'
-
   devise_for :users
-  resources :users, only: [:edit, :update]
-  resources :visitor_passes, only: [:create, :index, :new, :destroy]
+  resources :users, only: [:edit, :update] do
+    resources :visitor_passes, only: [:create, :index, :new, :destroy]
+  end
+
   resources :charges
 
   root 'visitor_passes#index'
