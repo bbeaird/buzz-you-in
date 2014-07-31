@@ -32,6 +32,7 @@ class VisitorPassesController < ApplicationController
   end
 
   def new
+    @user = current_user
     @visitor_pass = VisitorPass.new
   end
 
