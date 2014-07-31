@@ -35,7 +35,7 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_user_visitor_pass_path,
+            new_user_visitor_pass_path(@user),
             :class => 'btn btn-primary' %>
 <% else %>
   <h2>Ahhhhhhhhhhhhh!!! You need to sign up or sign in!</h2>

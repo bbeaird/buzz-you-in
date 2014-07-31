@@ -1,8 +1,7 @@
-<%= simple_form_for @visitor_pass, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @visitor_pass, url: user_visitor_passes_path, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :visitor_phone_number %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                visitor_passes_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_visitor_passes_path, :class => 'btn' %>
   </div>
 <% end %>

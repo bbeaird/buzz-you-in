@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to visitor_passes_path
+      redirect_to user_visitor_passes_path(@user)
     else
       render 'edit'
     end
