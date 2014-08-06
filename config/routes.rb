@@ -1,7 +1,6 @@
 BuzzYouIn::Application.routes.draw do
 
-  devise_for :users
-  resources :users, only: [:edit, :update] do
+  resources :users do
     resources :visitor_passes, only: [:create, :index, :new, :destroy]
   end
 

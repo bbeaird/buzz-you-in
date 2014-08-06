@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 gem 'dotenv-rails', :groups => [:development, :test]
-gem 'devise'
 gem 'twilio-ruby'
 gem 'pg'
 gem 'bootstrap-sass', '~> 3.1.1'
