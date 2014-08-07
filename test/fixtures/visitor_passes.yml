@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  visitor_phone_number: MyString
+  active: false
+  used: false
+  user_id: 
+
+two:
+  visitor_phone_number: MyString
+  active: false
+  used: false
+  user_id: 

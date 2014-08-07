@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807010242) do
+ActiveRecord::Schema.define(version: 20140807011632) do
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -19,5 +19,16 @@ ActiveRecord::Schema.define(version: 20140807010242) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "visitor_passes", force: true do |t|
+    t.string   "visitor_phone_number"
+    t.boolean  "active"
+    t.boolean  "used"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "visitor_passes", ["user_id"], name: "index_visitor_passes_on_user_id"
 
 end
