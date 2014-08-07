@@ -1,6 +1,6 @@
 X::Application.routes.draw do
   resources :users do
-    resources :visitor_passes only: [:index, :new, :create, :update, :destroy,]
+    resources :visitor_passes, only: [:index, :new, :create, :update, :destroy,]
   end
 
   root to: 'users#new'
