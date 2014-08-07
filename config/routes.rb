@@ -1,35 +1,4 @@
-BuzzYouIn::Application.routes.draw do
-
-  devise_for :users
-  resources :users, only: [:edit, :update] do
-    resources :visitor_passes, only: [:create, :index, :new, :destroy]
-  end
-
-  resources :charges
-
-  root 'visitor_passes#index'
-
-  patch '/users/add_phone_numbers', to: 'users#add_phone_numbers'
-
-  get '/users/search_for_twilio_number', to: 'users#search_for_twilio_number'
-
-  # post '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-  post '/users/send_area_code', to: 'users#send_area_code'
-  get '/users/list_twilio_numbers', to: 'users#list_twilio_numbers'
-
-  post '/users/buy_twilio_number', to: 'users#buy_twilio_number'
-  patch '/users/save_bought_number', to: 'users#save_bought_number'
-
-  get '/call-from-callbox', to: 'visitor_passes#call_from_callbox'
-  get '/sms-from-visitor', to: 'visitor_passes#sms_from_visitor'
-
-  post '/twilio/voice' => 'twilio#voice'
-  get '/twilio/voice' => 'twilio#voice'
-
-  patch '/users/add_resident_byi_phone_number', to: 'users#add_resident_byi_phone_number'
-
-
-
+X::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

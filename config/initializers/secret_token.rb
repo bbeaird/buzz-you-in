@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-BuzzYouIn::Application.config.secret_key_base = 'afc638db2c5ff064901d8873e1297961d6a326f4d3637bdf6e6608f5b8ee4abc25aaf0d847e4499783b7a43efe3f82f4efab8adf0dae9d0e2f266e55debbe983'
+X::Application.config.secret_key_base = '7289e3e18844043502d2ad16bd7627003c6264694b4c2ee2b45bf243351199cf2fda24ddf939d0867f2c6d8be76deb50048f1cdf40816a041af3cba268804392'

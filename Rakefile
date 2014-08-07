@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BuzzYouIn::Application.load_tasks
+X::Application.load_tasks

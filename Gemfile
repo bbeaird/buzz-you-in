@@ -1,19 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
-gem 'dotenv-rails', :groups => [:development, :test]
-gem 'devise'
-gem 'twilio-ruby'
-gem 'pg'
-gem 'bootstrap-sass', '~> 3.1.1'
-gem 'simple_form'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -40,24 +31,6 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-group :development, :test do
-  # gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails', '2.11.0'
-  # gem 'guard-rspec', '1.2.1'
-  # gem 'guard-spork', '1.2.0'
-  # gem 'childprocess', '0.3.6'
-  # gem 'spork', '0.9.2'
-end
-
-gem 'rails_12factor', group: :production
-
-gem 'twitter-bootstrap-rails'
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-gem 'phony_rails'
-gem 'newrelic_rpm'
-gem 'quiet_assets', :group => :development
-gem 'mixpanel-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

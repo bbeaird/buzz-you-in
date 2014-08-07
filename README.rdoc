@@ -1,11 +1,28 @@
-Buzz You In allows residents of apartment complexes that have callboxes to send visitor passes to visitors for easier access.
+== README
 
-It works like this:
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-1. Resident sends guest a visitor pass via text message.
+Things you may want to cover:
 
-2. Guest replies to text message when in front of callbox.
+* Ruby version
 
-3. Guest "calls" resident via callbox and is automatically buzzed in.
+* System dependencies
 
-Currently a work in progress, but should be done soon. Cheers!
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
