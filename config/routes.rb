@@ -3,7 +3,7 @@ X::Application.routes.draw do
     resources :visitor_passes, only: [:index, :new, :create, :update, :destroy,]
   end
 
-  root to: 'users#new'
+  root to: 'sessions#new'
 
   resources :sessions, only: [:new, :create, :destroy]
 
