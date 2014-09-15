@@ -1,5 +1,5 @@
 X::Application.routes.draw do
-  resources :users do
+  resources :users, except: [:index] do
     resources :visitor_passes, only: [:index, :new, :create, :update, :destroy,]
   end
 
