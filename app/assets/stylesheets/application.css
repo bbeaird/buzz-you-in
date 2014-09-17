@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+#signed-in-links {
+  font-size: 20px;
+}

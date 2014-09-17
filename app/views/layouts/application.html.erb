@@ -8,7 +8,10 @@
 </head>
 <body>
   <% if signed_in? %>
-    <%= link_to 'Sign out', signout_path, method: :delete %>
+    <div id="signed-in-links">
+      <%= link_to 'Sign out', signout_path, method: :delete %>
+      <%= link_to 'Send visitor passes!', '#' %>
+    </div>
   <% else %>
     <%= link_to 'Sign in', signin_path %>
   <% end %>
