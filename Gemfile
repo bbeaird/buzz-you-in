@@ -46,3 +46,4 @@ end
 gem 'bcrypt-ruby', '3.1.2'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'quiet_assets', group: :development
+gem 'griddler'
